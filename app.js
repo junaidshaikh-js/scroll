@@ -24,7 +24,27 @@ toggleBtn.addEventListener("click", () => {
     linksContainer.style.height = "0";
   }
 });
+
 // ********** fixed navbar ************
+const navbar = document.querySelector("nav");
+const scrollToTopLink = document.querySelector(".top-link");
+
+window.addEventListener("scroll", () => {
+  const scrollHeight = window.pageYOffset;
+  const navHeight = navbar.getBoundingClientRect().height;
+
+  if (scrollHeight > navHeight) {
+    navbar.classList.add("fixed-nav");
+  } else {
+    navbar.classList.remove("fixed-nav");
+  }
+
+  if (scrollHeight > 600) {
+    scrollToTopLink.classList.add("show-link");
+  } else {
+    scrollToTopLink.classList.remove("show-link");
+  }
+});
 
 // ********** smooth scroll ************
 // select links
