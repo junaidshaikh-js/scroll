@@ -10,6 +10,20 @@ date.innerHTML = new Date().getFullYear();
 
 // ********** close links ************
 
+const linksContainer = document.querySelector(".links-container");
+const links = document.querySelector(".links");
+const toggleBtn = document.querySelector(".nav-toggle");
+
+toggleBtn.addEventListener("click", () => {
+  const containerHeight = linksContainer.getBoundingClientRect().height;
+  const linksHeight = links.getBoundingClientRect().height;
+
+  if (containerHeight == 0) {
+    linksContainer.style.height = `${linksHeight}px`;
+  } else {
+    linksContainer.style.height = "0";
+  }
+});
 // ********** fixed navbar ************
 
 // ********** smooth scroll ************
