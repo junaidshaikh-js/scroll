@@ -48,3 +48,45 @@ window.addEventListener("scroll", () => {
 
 // ********** smooth scroll ************
 // select links
+
+const scrollLinks = document.querySelectorAll(".scroll-link");
+
+scrollLinks.forEach((item) => {
+  item.addEventListener("click", (e) => {
+    // prevented the default behaviour
+    e.preventDefault();
+
+    // get the id of the link you click
+    const id = item.getAttribute("href").slice(1);
+
+    // find the elemnent by using id
+    const element = document.getElementById(id);
+
+    // find the navbar height anc link container height
+    const navHeight = navbar.getBoundingClientRect().height;
+    const containerHeight = linksContainer.getBoundingClientRect().height;
+
+    // check if the navbar is fixed
+    const isNavFixed = navbar.classList.contains("fixed-nav");
+
+    // get the top position of the element
+    let position = element.offsetTop - navHeight;
+
+    if (!isNavFixed) {
+      position = position - navHeight;
+    }
+
+    if (navHeight > 82) {
+      position = position + containerHeight;
+    }
+
+    // scroll to the position
+    window.scrollTo({
+      left: 0,
+      top: position,
+    });
+
+    // close the navbar when you click on the nav links
+    linksContainer.style.height = "0";
+  });
+});
